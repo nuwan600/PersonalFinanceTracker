@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PFT.API", "PFT.API\PFT.API.csproj", "{2E17B4CC-1299-4076-BF57-A4040922EA55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PFT.Web", "PFT.Web\PFT.Web.csproj", "{51DFD78B-A4A9-4F33-93D7-B96A2EEB3F23}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{2803E11E-CC58-485C-BDBC-E7C1586024F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{6A871F34-9B10-4EBA-9DF5-211486126B90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PFT.Application", "PFT.Application\PFT.Application.csproj", "{F10F4C41-9FBE-4A4F-83A6-66DF57DD80C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PFT.Entities", "PFT.Entities\PFT.Entities.csproj", "{E307C5BD-8CA5-4FC2-B828-FC599338A894}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PFT.Infrastructure", "PFT.Infrastructure\PFT.Infrastructure.csproj", "{287FCFAA-981A-4881-A5A2-8DCE795A5D1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PFT.Persistence", "PFT.Persistence\PFT.Persistence.csproj", "{B2635C2F-BDFF-4B87-88D7-C213ACFBD456}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E17B4CC-1299-4076-BF57-A4040922EA55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E17B4CC-1299-4076-BF57-A4040922EA55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E17B4CC-1299-4076-BF57-A4040922EA55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E17B4CC-1299-4076-BF57-A4040922EA55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51DFD78B-A4A9-4F33-93D7-B96A2EEB3F23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51DFD78B-A4A9-4F33-93D7-B96A2EEB3F23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51DFD78B-A4A9-4F33-93D7-B96A2EEB3F23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51DFD78B-A4A9-4F33-93D7-B96A2EEB3F23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F10F4C41-9FBE-4A4F-83A6-66DF57DD80C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F10F4C41-9FBE-4A4F-83A6-66DF57DD80C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F10F4C41-9FBE-4A4F-83A6-66DF57DD80C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F10F4C41-9FBE-4A4F-83A6-66DF57DD80C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E307C5BD-8CA5-4FC2-B828-FC599338A894}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E307C5BD-8CA5-4FC2-B828-FC599338A894}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E307C5BD-8CA5-4FC2-B828-FC599338A894}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E307C5BD-8CA5-4FC2-B828-FC599338A894}.Release|Any CPU.Build.0 = Release|Any CPU
+		{287FCFAA-981A-4881-A5A2-8DCE795A5D1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{287FCFAA-981A-4881-A5A2-8DCE795A5D1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{287FCFAA-981A-4881-A5A2-8DCE795A5D1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{287FCFAA-981A-4881-A5A2-8DCE795A5D1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2635C2F-BDFF-4B87-88D7-C213ACFBD456}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2635C2F-BDFF-4B87-88D7-C213ACFBD456}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2635C2F-BDFF-4B87-88D7-C213ACFBD456}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2635C2F-BDFF-4B87-88D7-C213ACFBD456}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F10F4C41-9FBE-4A4F-83A6-66DF57DD80C3} = {2803E11E-CC58-485C-BDBC-E7C1586024F2}
+		{E307C5BD-8CA5-4FC2-B828-FC599338A894} = {2803E11E-CC58-485C-BDBC-E7C1586024F2}
+		{287FCFAA-981A-4881-A5A2-8DCE795A5D1B} = {6A871F34-9B10-4EBA-9DF5-211486126B90}
+		{B2635C2F-BDFF-4B87-88D7-C213ACFBD456} = {6A871F34-9B10-4EBA-9DF5-211486126B90}
+	EndGlobalSection
+EndGlobal
