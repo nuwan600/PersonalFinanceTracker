@@ -25,10 +25,7 @@ namespace PFT.Persistence.Migrations
             modelBuilder.Entity("PFT.Entities.Domain.Transactions", b =>
                 {
                     b.Property<int>("TransactionId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionId"));
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
