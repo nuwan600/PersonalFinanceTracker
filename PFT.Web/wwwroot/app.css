@@ -49,3 +49,19 @@ h1:focus {
 .darker-border-checkbox.form-check-input {
     border-color: #929292;
 }
+
+.mud-card {
+    margin-bottom: 1rem;
+}
+
+.text-success {
+    color: var(--mud-palette-success) !important;
+}
+
+.text-error {
+    color: var(--mud-palette-error) !important;
+}
+
+.mud-table-cell {
+    vertical-align: middle;
+}

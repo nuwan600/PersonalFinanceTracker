@@ -24,8 +24,11 @@ namespace PFT.Persistence.Repositories
 
         public async Task AddAsync(T entity)
         {
+            await _pFTDatabaseContext.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT Transactions ON");
             await _dbSet.AddAsync(entity);
             await _pFTDatabaseContext.SaveChangesAsync();
+            await _pFTDatabaseContext.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT Transactions OFF");
+
         }
 
         public async Task UpdateAsync(T entity)

@@ -1,0 +1,14 @@
+﻿@page "/add-income"
+@using PFT.Web.Models
+
+<MudText Typo="Typo.h4" Class="mb-4">Add Income</MudText>
+
+<TransactionForm _transaction="_transaction" ButtonText="Add Income"/>
+
+@code {
+    private Transaction _transaction = new Transaction
+    {
+        Date = DateTime.Today,
+        Type = "Income"
+    };
+}

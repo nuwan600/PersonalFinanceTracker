@@ -1,0 +1,39 @@
+﻿@page "/edit-transaction/{id:int}"
+@using MudBlazor
+@using PFT.Web.Models
+@using PFT.Web.Services
+@inject ITransactionService TransactionService
+@inject ISnackbar Snackbar
+@inject NavigationManager NavigationManager
+
+<MudText Typo="Typo.h4" Class="mb-4">Edit Transaction</MudText>
+
+@if (_transaction != null)
+{
+    <TransactionForm _transaction="_transaction" ButtonText="Update"/>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Transaction _transaction;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _transaction = await TransactionService.GetTransactionByIdAsync(Id);
+            if (_transaction == null)
+            {
+                Snackbar.Add("Transaction not found", Severity.Error);
+                NavigationManager.NavigateTo("/transactions");
+            }
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Error loading transaction: {ex.Message}", Severity.Error);
+            NavigationManager.NavigateTo("/transactions");
+        }
+    }
+}

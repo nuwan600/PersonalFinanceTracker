@@ -1,0 +1,132 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using MudBlazor
+@using PFT.Web.Models
+@using PFT.Web.Services
+@inject ITransactionService TransactionService
+@inject ISnackbar Snackbar
+@inject NavigationManager NavigationManager
+
+<EditForm Model="_transaction" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <MudGrid>
+        <MudItem xs="12" md="6">
+            <MudSelect @bind-Value="_transaction.Type" Label="Type" Required="true" RequiredError="Type is required">
+                <MudSelectItem Value="@(nameof(Transaction.Type))">Income</MudSelectItem>
+                <MudSelectItem Value="@(nameof(Transaction.Type))">Expense</MudSelectItem>
+            </MudSelect>
+        </MudItem>
+        <MudItem xs="12" md="6">
+            <MudTextField @bind-Value="_transaction.Category" 
+                          Label="Category" 
+                          Required="true" 
+                          RequiredError="Category is required"/>
+        </MudItem>
+        <MudItem xs="12" md="6">
+            <MudTextField @bind-Value="_transaction.Description" 
+                          Label="Description" 
+                          Required="true" 
+                          RequiredError="Description is required"/>
+        </MudItem>
+        <MudItem xs="12" md="6">
+            <MudTextField @bind-Value="_transaction.Amount" 
+                          Label="Amount" 
+                          InputType="InputType.Number" 
+                          Required="true" 
+                          RequiredError="Amount is required"
+                          Validation="@(new Func<decimal, string>(ValidateAmount))"/>
+        </MudItem>
+        <MudItem xs="12" md="6">
+            <MudDatePicker @bind-Value="_transaction.Date"
+                           Label="Date"
+                           Required="true"
+                           RequiredError="Date is required"
+                           Validation="@(new Func<DateTime?, string>(ValidateDate))" />
+
+        </MudItem>
+        <MudItem xs="12" class="mt-4">
+            <MudButton Variant="Variant.Filled" 
+                       Color="Color.Primary" 
+                       ButtonType="ButtonType.Submit"
+                       Disabled="_isProcessing">
+                @ButtonText
+            </MudButton>
+            <MudButton Variant="Variant.Text" 
+                       Color="Color.Default" 
+                       Class="ml-2" 
+                       OnClick="Cancel"
+                       Disabled="_isProcessing">
+                Cancel
+            </MudButton>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+
+@code {
+    [Parameter]
+    public Transaction _transaction { get; set; } = new Transaction
+    {
+        Date = DateTime.Today,
+        Type = "Income"
+    };
+
+    [Parameter]
+    public string ButtonText { get; set; } = "Save";
+
+    [Parameter]
+    public EventCallback OnSuccess { get; set; }
+
+    private bool _isProcessing = false;
+
+    private string ValidateAmount(decimal amount)
+    {
+        if (amount <= 0)
+            return "Amount must be positive";
+        return null;
+    }
+
+    private string ValidateDate(DateTime? date)
+    {
+        if (date == null)
+            return "Date is required";
+        if (date > DateTime.Today)
+            return "Date cannot be in the future";
+        return null;
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        _isProcessing = true;
+        
+        try
+        {
+            if (_transaction.TransactionId == 0)
+            {
+                await TransactionService.AddTransactionAsync(_transaction);
+                Snackbar.Add("Transaction added successfully", Severity.Success);
+            }
+            else
+            {
+                await TransactionService.UpdateTransactionAsync(_transaction.TransactionId, _transaction);
+                Snackbar.Add("Transaction updated successfully", Severity.Success);
+            }
+
+            await OnSuccess.InvokeAsync();
+            NavigationManager.NavigateTo("/transactions");
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Error saving transaction: {ex.Message}", Severity.Error);
+        }
+        finally
+        {
+            _isProcessing = false;
+        }
+    }
+
+    private void Cancel()
+    {
+        NavigationManager.NavigateTo("/transactions");
+    }
+}

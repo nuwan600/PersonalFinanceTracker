@@ -1,0 +1,14 @@
+﻿@page "/add-expense"
+@using PFT.Web.Models
+
+<MudText Typo="Typo.h4" Class="mb-4">Add Expense</MudText>
+
+<TransactionForm _transaction="_transaction" ButtonText="Add Expense"/>
+
+@code {
+    private Transaction _transaction = new Transaction
+    {
+        Date = DateTime.Today,
+        Type = "Expense"
+    };
+}

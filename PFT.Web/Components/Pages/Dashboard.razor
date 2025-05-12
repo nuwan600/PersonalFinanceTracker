@@ -1,0 +1,61 @@
+﻿@page "/"
+@using MudBlazor
+@using PFT.Web.Models
+@using PFT.Web.Services
+@inject ITransactionService TransactionService
+@inject ISnackbar Snackbar
+
+<MudGrid>
+    <MudItem xs="12" md="4">
+        <MudCard Elevation="10">
+            <MudCardHeader>
+                <MudText Typo="Typo.h6">Total Income</MudText>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudText Typo="Typo.h4" Class="text-success">@(_summary?.TotalIncome.ToString("C") ?? "$0.00")</MudText>
+            </MudCardContent>
+        </MudCard>
+    </MudItem>
+    <MudItem xs="12" md="4">
+        <MudCard Elevation="10">
+            <MudCardHeader>
+                <MudText Typo="Typo.h6">Total Expenses</MudText>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudText Typo="Typo.h4" Class="text-error">@(_summary?.TotalExpenses.ToString("C") ?? "$0.00")</MudText>
+            </MudCardContent>
+        </MudCard>
+    </MudItem>
+    <MudItem xs="12" md="4">
+        <MudCard Elevation="10">
+            <MudCardHeader>
+                <MudText Typo="Typo.h6">Savings</MudText>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudText Typo="Typo.h4" Class="@GetSavingsClass()">@(_summary?.Savings.ToString("C") ?? "$0.00")</MudText>
+            </MudCardContent>
+        </MudCard>
+    </MudItem>
+</MudGrid>
+
+@code {
+    private TransactionSummary _summary;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _summary = await TransactionService.GetTransactionSummaryAsync();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Error loading summary: {ex.Message}", Severity.Error);
+        }
+    }
+
+    private string GetSavingsClass()
+    {
+        if (_summary == null) return "";
+        return _summary.Savings >= 0 ? "text-success" : "text-error";
+    }
+}

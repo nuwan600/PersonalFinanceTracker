@@ -20,7 +20,9 @@ namespace PFT.Persistence.Data
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(PFTDatabaseContext).Assembly);
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Transactions>(builder => builder.HasKey("TransactionId"));
+            modelBuilder.Entity<Transactions>()
+                .Property(t => t.TransactionId)
+                .ValueGeneratedNever(); // Tell EF you'll manage IDs
             modelBuilder.Entity<Transactions>().Property(t => t.Amount).HasColumnType("decimal(18,2)");
         }
 
